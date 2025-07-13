@@ -63,10 +63,10 @@ const AboutTheBuilding = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#404042] dark:text-white">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#404042] dark:text-white">
             About the <span className="text-[#F5951D]">Building</span>
           </h2>
-          <p className="mt-4 max-w-3xl mx-auto text-base sm:text-lg text-[#606060] dark:text-gray-300">
+          <p className="mt-4 max-w-2xl mx-auto text-base text-[#606060] dark:text-gray-300">
             Designed for a modern lifestyle — combining security, sustainability, and comfort. BrickBase is not just a building; it's an ecosystem.
           </p>
         </motion.div>
@@ -80,7 +80,7 @@ const AboutTheBuilding = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white dark:bg-[#1e1e1f] border border-gray-200 dark:border-white/10 rounded-xl shadow-sm p-6 hover:shadow-lg transition-all duration-300"
+              className="bg-white dark:bg-[#1e1e1f] border border-gray-200 dark:border-white/10 rounded shadow-sm p-6 hover:shadow-lg transition-all duration-300"
             >
               <div className="text-[#F5951D] mb-4 flex justify-center">
                 {feature.icon}

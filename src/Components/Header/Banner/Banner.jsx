@@ -38,10 +38,10 @@ const Banner = () => {
 
           {/* Left-to-right black gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent flex flex-col justify-center items-start text-white px-4 sm:px-8 md:px-12 lg:px-20">
-            <h2 className="text-base sm:text-xl md:text-3xl lg:text-5xl font-bold mb-2 md:mb-4 text-start">
+            <h2 className="text-base sm:text-xl md:text-2xl lg:text-5xl font-bold mb-2 md:mb-4 text-start">
               Smart Living Starts with BrickBase
             </h2>
-            <p className="mb-2 md:mb-10 text-xs sm:text-sm lg:text-xl text-start">
+            <p className="mb-2 md:mb-10 text-xs sm:text-sm lg:text-lg text-start text-white/90">
               Experience seamless apartment living with our secure, efficient, and <br /> intuitive management system — all in one place.
             </p>
 
@@ -65,10 +65,10 @@ const Banner = () => {
 
           {/* Left-to-right black gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent flex flex-col justify-center items-start text-white px-4 sm:px-8 md:px-12 lg:px-20">
-            <h2 className="text-base sm:text-xl md:text-3xl lg:text-5xl font-bold mb-2 md:mb-4 text-start">
+            <h2 className="text-base sm:text-xl md:text-2xl lg:text-5xl font-bold mb-2 md:mb-4 text-start">
               Manage Everything from Dashboard
             </h2>
-            <p className="mb-2 md:mb-10 text-xs sm:text-sm lg:text-xl text-start">
+            <p className="mb-2 md:mb-10 text-xs sm:text-sm lg:text-lg text-start text-white/90">
               From tenant requests to maintenance scheduling — control every <br /> building task with ease, from anywhere.
             </p>
             <Link to={'/addFood'}>
@@ -91,10 +91,10 @@ const Banner = () => {
 
           {/* Left-to-right black gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent flex flex-col justify-center items-start text-white px-4 sm:px-8 md:px-12 lg:px-20">
-            <h2 className="text-base sm:text-xl md:text-3xl lg:text-5xl font-bold mb-2 md:mb-4 text-start">
+            <h2 className="text-base sm:text-xl md:text-2xl lg:text-5xl font-bold mb-2 md:mb-4 text-start">
               Connect. Communicate. Live Better.
             </h2>
-            <p className="mb-2 md:mb-10 text-xs sm:text-sm lg:text-xl text-start">
+            <p className="mb-2 md:mb-10 text-xs sm:text-sm lg:text-lg text-start text-white/90">
               Stay informed, pay rent, submit issues — your residents have <br /> everything they need, right in their pocket.
             </p>
 
