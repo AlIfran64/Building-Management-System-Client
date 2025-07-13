@@ -41,8 +41,8 @@ const Banner = () => {
             <h2 className="text-base sm:text-xl md:text-3xl lg:text-5xl font-bold mb-2 md:mb-4 text-start">
               Smart Living Starts with BrickBase
             </h2>
-            <p className="mb-2 md:mb-5 text-xs sm:text-sm lg:text-xl text-start">
-              Experience seamless apartment living with our secure, efficient, and intuitive management system — all in one place.
+            <p className="mb-2 md:mb-10 text-xs sm:text-sm lg:text-xl text-start">
+              Experience seamless apartment living with our secure, efficient, and <br /> intuitive management system — all in one place.
             </p>
 
             <Link to={'/availableFoods'}>
@@ -68,8 +68,8 @@ const Banner = () => {
             <h2 className="text-base sm:text-xl md:text-3xl lg:text-5xl font-bold mb-2 md:mb-4 text-start">
               Manage Everything from Dashboard
             </h2>
-            <p className="mb-2 md:mb-5 text-xs sm:text-sm lg:text-xl text-start">
-              From tenant requests to maintenance scheduling — control every building task with ease, from anywhere.
+            <p className="mb-2 md:mb-10 text-xs sm:text-sm lg:text-xl text-start">
+              From tenant requests to maintenance scheduling — control every <br /> building task with ease, from anywhere.
             </p>
             <Link to={'/addFood'}>
               <button className="bg-[#F5951D] text-white font-medium rounded hover:bg-[#404042] px-4 py-2 sm:px-6 sm:py-3 text-xs sm:text-sm lg:text-lg">
@@ -94,8 +94,8 @@ const Banner = () => {
             <h2 className="text-base sm:text-xl md:text-3xl lg:text-5xl font-bold mb-2 md:mb-4 text-start">
               Connect. Communicate. Live Better.
             </h2>
-            <p className="mb-2 md:mb-5 text-xs sm:text-sm lg:text-xl text-start">
-              Stay informed, pay rent, submit issues — your residents have everything they need, right in their pocket.
+            <p className="mb-2 md:mb-10 text-xs sm:text-sm lg:text-xl text-start">
+              Stay informed, pay rent, submit issues — your residents have <br /> everything they need, right in their pocket.
             </p>
 
             <Link to={'/myFoodRequest'}>
