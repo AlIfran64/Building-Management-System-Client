@@ -7,3 +7,15 @@
 * {
   font-family: "Inter", sans-serif;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
+html,
+body {
+  background-color: white;
+  color: #111827;
+}
+
+.dark body {
+  background-color: #1d232a;
+  color: white;
+}
