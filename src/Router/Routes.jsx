@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layouts/MainLayout/MainLayout";
 import Home from "../Pages/Home/Home";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
 
@@ -15,4 +16,10 @@ export const router = createBrowserRouter([
       }
     ]
   },
+
+  // Error page
+  {
+    path: '/*',
+    element: <ErrorPage></ErrorPage>
+  }
 ]);
