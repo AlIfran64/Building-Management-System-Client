@@ -21,7 +21,7 @@ const ApartmentLocation = () => {
   const apartmentPosition = [23.8747, 90.3796]; // Uttara, Dhaka
 
   return (
-    <section className="bg-[#f5f5f5] dark:bg-[#1e1e1f] py-20 px-5 md:px-10">
+    <section className="bg-black/85 dark:bg-[#121212] py-20 px-5 md:px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left Content */}
         <motion.div
@@ -31,27 +31,18 @@ const ApartmentLocation = () => {
           viewport={{ once: true }}
           className="space-y-5"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#404042] dark:text-white">
-            Apartment Location
+          <h2 className="text-3xl md:text-4xl font-bold text-white">
+            Apartment <span className='text-[#F5951D]'>Location</span>
           </h2>
-          <p className="text-base text-[#555] dark:text-gray-300">
-            BrickBase Apartment is ideally located in Uttara, Dhaka. With top-tier road connectivity,
-            nearby shops, schools, hospitals, and public transport hubs, it's the perfect urban escape
-            with suburban peace.
+          <p className="text-base text-gray-300">
+            BrickBase Apartment is ideally located in Uttara, Dhaka. With nearby shops, top-tier road connectivity, schools, hospitals, and public transport hubs, it's the perfect urban escape with suburban peace.
           </p>
 
-          <div className="flex items-center gap-3 text-[#404042] dark:text-white text-lg font-medium">
-            <FaMapMarkerAlt className="text-[#F5951D]" />
-            <span>Address: Sector 7, Uttara, Dhaka</span>
+          <div className="flex items-center gap-3 text-white text-lg font-medium">
+            <FaMapMarkerAlt size={20} className="text-[#F5951D]" />
+            <span>Sector: 7, Uttara, Dhaka</span>
           </div>
-          <div className="flex items-center gap-3 text-[#404042] dark:text-white text-lg font-medium">
-            <FaBuilding className="text-[#F5951D]" />
-            <span>Nearby: Uttara High School, Metro Rail Station</span>
-          </div>
-          <div className="flex items-center gap-3 text-[#404042] dark:text-white text-lg font-medium">
-            <FaStreetView className="text-[#F5951D]" />
-            <span>Public Transport: Bus, Uber, Metro Rail</span>
-          </div>
+
         </motion.div>
 
         {/* Right Side Map */}
@@ -61,7 +52,7 @@ const ApartmentLocation = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="rounded overflow-hidden shadow ring-1 ring-black/10 dark:ring-white/10 h-[400px] w-full">
+          <div className="rounded overflow-hidden ring-1 ring-black/10 dark:ring-white/10 h-[400px] w-full border border-white/20 shadow-2xl p-3">
             <MapContainer
               center={apartmentPosition}
               zoom={13}
@@ -75,11 +66,11 @@ const ApartmentLocation = () => {
               <Marker position={apartmentPosition} icon={redIcon}>
                 <Popup>
                   <div className="flex flex-col gap-1 text-sm">
-                    <div className="flex items-center gap-2">
-                      <FaHome className="text-[#F5951D]" />
+                    <div>
+                      <FaHome className="text-[#F5951D] mb-1" />
                       <strong>BrickBase Apartment</strong>
                     </div>
-                    <div>Sector 7, Uttara, Dhaka</div>
+                    <div> Sector 7, Uttara, Dhaka</div>
                   </div>
                 </Popup>
               </Marker>

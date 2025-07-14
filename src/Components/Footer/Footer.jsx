@@ -5,7 +5,7 @@ import logo from "../../../src/assets/images/logo1.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1e1e1f] text-white py-10 px-10 mt-10">
+    <footer className="bg-[#1e1e1f] text-white py-20 px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 md:place-items-center">
         {/* Company Info */}
         <div>
@@ -45,9 +45,9 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
           <div className="flex gap-4 text-xl">
-            <a href="#" className="hover:text-[#F5951D]" aria-label="Facebook"><FaFacebookF /></a>
-            <a href="#" className="hover:text-[#F5951D]" aria-label="Twitter"><FaTwitter /></a>
-            <a href="#" className="hover:text-[#F5951D]" aria-label="LinkedIn"><FaLinkedinIn /></a>
+            <Link to={'https://www.facebook.com/'} target='_blank' className="hover:text-[#F5951D]" aria-label="Facebook"><FaFacebookF /></Link>
+            <Link to={'https://www.twitter.com/'} target='_blank' className="hover:text-[#F5951D]" aria-label="Twitter"><FaTwitter /></Link>
+            <Link to={'https://www.linkedin.com/'} target='_blank' className="hover:text-[#F5951D]" aria-label="LinkedIn"><FaLinkedinIn /></Link>
           </div>
           <p className="text-sm mt-4">Email: support@brickbase.com</p>
           <p className="text-sm">Phone: +880-1234-567890</p>
