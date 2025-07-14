@@ -22,6 +22,7 @@ const Navbar = () => {
   return (
     <nav className="bg-white dark:bg-[#1e1e1f] shadow-sm w-full fixed top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+
         {/* Logo */}
         <Link onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="flex items-center gap-2 cursor-pointer">
