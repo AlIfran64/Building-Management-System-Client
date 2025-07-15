@@ -4,13 +4,22 @@ import slider1 from '../../../src/assets/images/slider1.webp';
 
 const AuthLayout = () => {
   return (
-    <div className='min-h-screen flex items-stretch'>
-      <div className='w-1/2'>
-        <Outlet></Outlet>
+    <div className="min-h-screen flex flex-col lg:flex-row">
+
+      {/* Left Side: Form Outlet */}
+      <div className="w-full lg:w-1/2">
+        <Outlet />
       </div>
-      <div className='w-1/2'>
-        <img className='object-cover w-full h-full' src={slider1} alt="image" />
+
+      {/* Right Side: Image */}
+      <div className="w-full lg:w-1/2 h-64 lg:h-auto">
+        <img
+          src={slider1}
+          alt="Auth"
+          className="w-full h-full object-cover"
+        />
       </div>
+
     </div>
   );
 };

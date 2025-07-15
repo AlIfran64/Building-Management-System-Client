@@ -1,9 +1,17 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import logo from '../../../src/assets/images/logo1.png';
+import useAuth from '../../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const Register = () => {
+
+  const { signup } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location?.state?.from || '/';
+
   const {
     register,
     handleSubmit,
@@ -12,8 +20,32 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log('Register Data:', data);
-    // TODO: handle register logic here
+
+    // Destructure
+    const { email, password } = data;
+
+    // Register
+    signup(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        Swal.fire({
+          title: 'Success!',
+          text: 'You have registered successfully.',
+          icon: 'success',
+          confirmButtonColor: '#F5951D',
+        });
+        navigate(from);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        Swal.fire({
+          title: 'Error!',
+          text: `${errorMessage}`,
+          icon: 'error',
+          confirmButtonColor: '#F5951D',
+        });
+      });
   };
 
   const password = watch('password');
@@ -36,7 +68,7 @@ const Register = () => {
         </Link>
       </div>
 
-      <div className='flex flex-col items-center justify-center py-5'>
+      <div className='flex flex-col items-center justify-center md:py-5'>
         {/* Register Card */}
         <div className="bg-white dark:bg-[#2c2c2f] shadow-xl rounded p-10 w-full max-w-md">
           <h3 className="text-2xl font-bold text-center text-[#404042] dark:text-white">Create Your Account</h3>

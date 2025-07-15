@@ -25,7 +25,7 @@ const DarkModeToggler = () => {
           onClick={() => setDarkMode(!darkMode)}
           className="transition-all cursor-pointer text-[#404042] dark:text-white rounded-full px-2 py-2 bg-gray-100 dark:bg-white/10"
         >
-          {darkMode ? <CiLight size={30} /> : <CiDark size={30} />}
+          {darkMode ? <CiLight size={28} /> : <CiDark size={28} />}
         </button>
       </div>
     </div>
