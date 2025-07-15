@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 const Login = () => {
 
-  const { login } = useAuth();
+  const { login, googleLogin } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from || '/';
@@ -48,9 +48,29 @@ const Login = () => {
       });
   };
 
+
+  // Google Log in
   const handleGoogleLogin = () => {
-    console.log('Google login clicked');
-    // TODO: google login logic
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          title: 'Success!',
+          text: 'You have logged in successfully.',
+          icon: 'success',
+          confirmButtonColor: '#F5951D',
+        });
+        navigate(from);
+      }).catch((error) => {
+        const errorMessage = error.message;
+        Swal.fire({
+          title: 'Error!',
+          text: `${errorMessage}`,
+          icon: 'error',
+          confirmButtonColor: '#F5951D',
+        });
+      });
   };
 
   return (
