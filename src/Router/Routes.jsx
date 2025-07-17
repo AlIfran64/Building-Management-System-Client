@@ -8,6 +8,8 @@ import Register from "../Pages/Register/Register";
 import DashboardLayout from "../Layouts/DashboardLayout/DashboardLayout";
 import Apartment from "../Pages/Apartment/Apartment";
 import PrivateRoutes from "./PrivateRoutes";
+import MyProfile from "../Pages/MyProfile/MyProfile";
+import Announcement from "../Pages/Announcement/Announcement";
 
 export const router = createBrowserRouter([
 
@@ -51,7 +53,17 @@ export const router = createBrowserRouter([
     element:
       <PrivateRoutes>
         <DashboardLayout></DashboardLayout>
-      </PrivateRoutes>
+      </PrivateRoutes>,
+    children: [
+      {
+        path: 'myProfile',
+        element: <MyProfile></MyProfile>
+      },
+      {
+        path: 'announcement',
+        element: <Announcement></Announcement>
+      }
+    ]
   },
 
   // Error page

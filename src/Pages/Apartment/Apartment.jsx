@@ -109,8 +109,8 @@ const Apartment = () => {
         </div>
 
         {/* Search Rent Range */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-15 justify-center items-center">
-          <p className='text-lg'>Search Apartment By:</p>
+        <div className="flex flex-col sm:flex-row gap-4 mb-5 justify-end items-center">
+          <p className='text-lg font-semibold'>Search Apartments By:</p>
           <input
             type="number"
             placeholder="Min Rent"
@@ -176,8 +176,8 @@ const Apartment = () => {
               onClick={() => setCurrentPage(i + 1)}
               className={`px-4 py-2 rounded border ${currentPage === i + 1
                 ? 'bg-[#404042] text-white'
-                : 'bg-white dark:bg-[#1f1f23] text-[#404042] dark:text-white border-gray-300'
-                } hover:bg-[#fdb54c] transition`}
+                : 'bg-white dark:bg-[#1f1f23] text-[#404042] dark:text-white border-gray-400'
+                } hover:bg-[#c5c5c6] hover:text-black transition`}
             >
               {i + 1}
             </button>
