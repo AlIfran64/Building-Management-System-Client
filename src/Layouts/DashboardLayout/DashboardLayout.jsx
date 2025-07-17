@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
-import { Menu, X, User, Megaphone } from 'lucide-react';
+import {
+  Menu,
+  X,
+  User,
+  Megaphone,
+  CreditCard,
+  History,
+  Shield,
+  Users,
+  MessageCircle,
+  FileText,
+  Gift
+} from 'lucide-react';
 import logo from '../../../src/assets/images/logo1.png';
 
 const DashboardLayout = () => {
@@ -9,6 +21,18 @@ const DashboardLayout = () => {
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
+
+  const navItems = [
+    { to: "/dashboard/myProfile", label: "My Profile", Icon: User },
+    { to: "/dashboard/announcement", label: "Announcement", Icon: Megaphone },
+    { to: "/dashboard/makePayment", label: "Make Payment", Icon: CreditCard },
+    { to: "/dashboard/paymentHistory", label: "Payment History", Icon: History },
+    { to: "/dashboard/adminProfile", label: "Admin Profile", Icon: Shield },
+    { to: "/dashboard/manageMembers", label: "Manage Members", Icon: Users },
+    { to: "/dashboard/makeAnnouncement", label: "Make Announce", Icon: MessageCircle },
+    { to: "/dashboard/agreementRequests", label: "Agreement Requests", Icon: FileText },
+    { to: "/dashboard/manageCoupons", label: "Manage Coupons", Icon: Gift }
+  ];
 
   return (
     <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white relative">
@@ -23,28 +47,18 @@ const DashboardLayout = () => {
         </Link>
 
         <nav className="flex flex-col gap-2">
-          <NavLink
-            to="/dashboard/myProfile"
-            className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive
-                ? 'bg-[#F5951D] text-white'
-                : 'hover:bg-[#808185] text-white'
-              }`
-            }
-          >
-            <User size={18} /> My Profile
-          </NavLink>
-          <NavLink
-            to="/dashboard/announcement"
-            className={({ isActive }) =>
-              `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive
-                ? 'bg-[#F5951D] text-white'
-                : 'hover:bg-[#808185] text-white'
-              }`
-            }
-          >
-            <Megaphone size={18} /> Announcement
-          </NavLink>
+          {navItems.map(({ to, label, Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                }`
+              }
+            >
+              <Icon size={18} /> {label}
+            </NavLink>
+          ))}
         </nav>
       </aside>
 
@@ -68,30 +82,19 @@ const DashboardLayout = () => {
       >
         <div className="p-5">
           <nav className="flex flex-col gap-4 mt-12">
-            <NavLink
-              to="/dashboard/myProfile"
-              className={({ isActive }) =>
-                `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive
-                  ? 'bg-[#F5951D] text-white'
-                  : 'hover:bg-[#808185] text-white'
-                }`
-              }
-              onClick={() => setIsDrawerOpen(false)}
-            >
-              <User size={18} /> My Profile
-            </NavLink>
-            <NavLink
-              to="/dashboard/announcement"
-              className={({ isActive }) =>
-                `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive
-                  ? 'bg-[#F5951D] text-white'
-                  : 'hover:bg-[#808185] text-white'
-                }`
-              }
-              onClick={() => setIsDrawerOpen(false)}
-            >
-              <Megaphone size={18} /> Announcement
-            </NavLink>
+            {navItems.map(({ to, label, Icon }) => (
+              <NavLink
+                key={to}
+                to={to}
+                className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }
+                onClick={() => setIsDrawerOpen(false)}
+              >
+                <Icon size={18} /> {label}
+              </NavLink>
+            ))}
           </nav>
         </div>
       </div>

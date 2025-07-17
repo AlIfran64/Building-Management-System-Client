@@ -10,6 +10,13 @@ import Apartment from "../Pages/Apartment/Apartment";
 import PrivateRoutes from "./PrivateRoutes";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import Announcement from "../Pages/Announcement/Announcement";
+import MakePayment from "../Pages/MakePayment/MakePayment";
+import PaymentHistory from "../Pages/PaymentHistory/PaymentHistory";
+import AdminProfile from "../Pages/AdminProfile/AdminProfile";
+import ManageMembers from "../Pages/ManageMembers/ManageMembers";
+import MakeAnnouncement from "../Pages/MakeAnnounce/MakeAnnouncement";
+import AgreementRequests from "../Pages/AgreementRequest/AgreementRequests";
+import ManageCoupons from "../Pages/ManageCoupons/ManageCoupons";
 
 export const router = createBrowserRouter([
 
@@ -62,6 +69,34 @@ export const router = createBrowserRouter([
       {
         path: 'announcement',
         element: <Announcement></Announcement>
+      },
+      {
+        path: 'makePayment',
+        element: <MakePayment></MakePayment>
+      },
+      {
+        path: 'paymentHistory',
+        element: <PaymentHistory></PaymentHistory>
+      },
+      {
+        path: 'adminProfile',
+        element: <AdminProfile></AdminProfile>
+      },
+      {
+        path: 'manageMembers',
+        element: <ManageMembers></ManageMembers>
+      },
+      {
+        path: 'makeAnnouncement',
+        element: <MakeAnnouncement></MakeAnnouncement>
+      },
+      {
+        path: 'agreementRequests',
+        element: <AgreementRequests></AgreementRequests>
+      },
+      {
+        path: 'manageCoupons',
+        element: <ManageCoupons></ManageCoupons>
       }
     ]
   },

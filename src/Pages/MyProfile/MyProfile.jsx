@@ -16,7 +16,7 @@ const MyProfile = () => {
           <img
             src={user?.photoURL || 'https://via.placeholder.com/120'}
             alt="User"
-            className="w-32 h-32 rounded-full object-cover border-4 border-primary-500"
+            className="w-20 h-20 rounded-full object-cover border-2 border-primary-500"
           />
           <div className="flex-1 space-y-2 text-center md:text-left">
             <p><span className="font-semibold">Name:</span> {user?.displayName || 'N/A'}</p>
