@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router';
 import logo from '../../../src/assets/images/logo1.png';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import axios from 'axios';
+import useAxios from '../../Hooks/useAxios';
 
 const Register = () => {
 
-  const { signup } = useAuth();
+  const { signup, updateUserProfile } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from || '/';
+  const [profilePic, setProfilePic] = useState('');
+  const axiosInstance = useAxios();
 
   const {
     register,
@@ -22,13 +26,56 @@ const Register = () => {
   const onSubmit = (data) => {
 
     // Destructure
-    const { email, password } = data;
+    const { email, password, name } = data;
 
     // Register
     signup(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+
+        // Update user info in db
+        // const userInfo = {
+        //   email: email,
+        //   role: 'user',
+        //   createdAt: new Date().toISOString()
+        // }
+
+        // const userRes = await axiosInstance.post('/users', userInfo);
+        // console.log(userRes.data);
+
+
+        // Update user profile in firebase
+        const userProfile = {
+          displayName: data.name,
+          photoURL: profilePic
+        }
+        updateUserProfile(userProfile)
+          .then(async () => {
+
+            // Update user info in db
+            const userInfo = {
+              name: name,
+              photo: profilePic,
+              email: email,
+              role: 'user',
+              createdAt: new Date().toISOString()
+            }
+
+            const userRes = await axiosInstance.post('/users', userInfo);
+            console.log(userRes.data);
+
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: 'Error!',
+              text: `${error}`,
+              icon: 'error',
+              confirmButtonColor: '#F5951D',
+            });
+          })
+
+
         Swal.fire({
           title: 'Success!',
           text: 'You have registered successfully.',
@@ -50,6 +97,16 @@ const Register = () => {
 
   const password = watch('password');
   console.log(password);
+
+  // Handle image upload
+  const handleImageUpload = async (e) => {
+    const image = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', image);
+
+    const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_UPLOAD_KEY}`, formData);
+    setProfilePic(res.data.data.url);
+  }
 
 
   return (
@@ -106,9 +163,11 @@ const Register = () => {
             <div>
               <label className="block text-sm font-medium text-[#404042] dark:text-gray-200 mb-1">Upload Photo</label>
               <input
+                onChange={handleImageUpload}
                 type="file"
+                placeholder='Upload your image'
                 accept="image/*"
-                {...register('photo', { required: true })}
+                // {...register('photo', { required: true })}
                 className="w-full px-3 py-[0.4rem] rounded border border-gray-300 dark:border-gray-600 text-[#404042] dark:text-white bg-white dark:bg-[#2c2c2f] focus:outline-none focus:ring-2 focus:ring-[#F5951D]"
               />
               {errors.photo && <p className="text-red-500 text-sm mt-1">Photo is required</p>}

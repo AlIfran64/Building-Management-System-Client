@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import useAxios from '../../Hooks/useAxios';
 
 const Login = () => {
 
@@ -12,6 +13,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location?.state?.from || '/';
+  const axiosInstance = useAxios();
 
   const {
     register,
@@ -52,9 +54,21 @@ const Login = () => {
   // Google Log in
   const handleGoogleLogin = () => {
     googleLogin()
-      .then((result) => {
+      .then(async (result) => {
         const user = result.user;
-        console.log(user);
+
+        // Update user info in db
+        const userGoogleInfo = {
+          name: user.displayName,
+          photo: user.photoURL,
+          email: user.email,
+          role: 'user',
+          createdAt: new Date().toISOString()
+        }
+
+        const userRes = await axiosInstance.post('/users', userGoogleInfo);
+        console.log(userRes.data);
+
         Swal.fire({
           title: 'Success!',
           text: 'You have logged in successfully.',

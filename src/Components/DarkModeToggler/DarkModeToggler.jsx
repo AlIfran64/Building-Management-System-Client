@@ -6,11 +6,11 @@ const DarkModeToggler = () => {
   const { darkMode, setDarkMode } = useDarkMode();
 
   return (
-    <div className="w-full">
+    <div className="flex items-center">
       {/* Small screens: dropdown */}
       <div className="block lg:hidden">
         <select
-          className="w-full p-2 rounded border border-gray-300 dark:border-white bg-white dark:bg-[#1e1e1f] text-[#404042] dark:text-white"
+          className="w-full p-2 rounded border border-gray-300 dark:border-white bg-white dark:bg-[#1e1e1f] text-[#404042] dark:text-white text-sm"
           value={darkMode ? "dark" : "light"}
           onChange={(e) => setDarkMode(e.target.value === "dark")}
         >
@@ -25,7 +25,7 @@ const DarkModeToggler = () => {
           onClick={() => setDarkMode(!darkMode)}
           className="transition-all cursor-pointer text-[#404042] dark:text-white rounded-full px-2 py-2 bg-gray-100 dark:bg-white/10"
         >
-          {darkMode ? <CiLight size={28} /> : <CiDark size={28} />}
+          {darkMode ? <CiLight size={26} /> : <CiDark size={26} />}
         </button>
       </div>
     </div>
