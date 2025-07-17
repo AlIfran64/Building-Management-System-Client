@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxios from '../../Hooks/useAxios';
 import useAuth from '../../Hooks/useAuth';
@@ -14,6 +14,10 @@ const Apartment = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [minRent, setMinRent] = useState('');
+  const [maxRent, setMaxRent] = useState('');
+
   const { data, isLoading, error } = useQuery({
     queryKey: ['apartments'],
     queryFn: async () => {
@@ -22,12 +26,8 @@ const Apartment = () => {
     },
   });
 
-
-  // Handle agreement
   const handleAgreement = async (apt) => {
-    if (!user) {
-      return navigate('/login');
-    }
+    if (!user) return navigate('/login');
 
     const result = await Swal.fire({
       title: 'Are you sure?',
@@ -53,12 +53,11 @@ const Apartment = () => {
 
     try {
       const res = await axiosSecure.post('/agreements', agreementData);
-
       if (res.data.insertedId) {
         Swal.fire({
           icon: 'success',
           title: 'Agreement submitted!',
-          text: 'Your rental request is now pending. You cannot select another apartment.',
+          text: 'Your rental request is now pending.',
           confirmButtonColor: '#F5951D',
         });
       }
@@ -72,30 +71,65 @@ const Apartment = () => {
     }
   };
 
-
   if (isLoading) return <Loading />;
-  if (error)
-    return Swal.fire({
+  if (error) {
+    Swal.fire({
       title: 'Error!',
       text: `${error}`,
       icon: 'error',
       confirmButtonColor: '#F5951D',
     });
+    return null;
+  }
+
+  // 🔍 Filter apartments by rent range
+  const filteredApartments = data?.filter((apt) => {
+    const rent = apt.rent;
+    const min = minRent === '' ? 0 : parseFloat(minRent);
+    const max = maxRent === '' ? Infinity : parseFloat(maxRent);
+    return rent >= min && rent <= max;
+  }) || [];
+
+  // 📄 Pagination logic
+  const itemsPerPage = 6;
+  const totalPages = Math.ceil(filteredApartments.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentData = filteredApartments.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div className="bg-white dark:bg-[#121212] min-h-screen pt-10 pb-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-20">
-          <h1 className="text-4xl font-bold text-[#404042] dark:text-white">
-            Apartments
-          </h1>
+
+        {/* Heading */}
+        <div className="text-center mb-10">
+          <h1 className="text-4xl font-bold text-[#404042] dark:text-white">Apartments</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-2 text-base max-w-2xl mx-auto">
             Explore available apartments. Click "Agreement" to start the rental process.
           </p>
         </div>
 
+        {/* Search Rent Range */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-15 justify-center items-center">
+          <p className='text-lg'>Search Apartment By:</p>
+          <input
+            type="number"
+            placeholder="Min Rent"
+            value={minRent}
+            onChange={(e) => setMinRent(e.target.value)}
+            className="px-4 py-2 border rounded-md w-full sm:w-40 text-[#404042] dark:text-white"
+          />
+          <input
+            type="number"
+            placeholder="Max Rent"
+            value={maxRent}
+            onChange={(e) => setMaxRent(e.target.value)}
+            className="px-4 py-2 border rounded-md w-full sm:w-40 text-[#404042] dark:text-white"
+          />
+        </div>
+
+        {/* Apartments Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {data.map((apt, index) => (
+          {currentData.map((apt, index) => (
             <motion.div
               key={apt._id || index}
               initial={{ opacity: 0, y: 20 }}
@@ -111,10 +145,7 @@ const Apartment = () => {
 
               <div className="p-4 flex flex-col flex-grow">
                 <h2 className="text-2xl font-bold mb-1">{apt.apartmentNo}</h2>
-                <p className="text-gray-500 dark:text-gray-400 text-sm mb-2">
-                  Apartment No
-                </p>
-
+                <p className="text-gray-500 dark:text-gray-400 text-sm mb-2">Apartment No</p>
                 <ul className="text-sm text-gray-700 dark:text-gray-300 mb-4 space-y-1">
                   <li><strong>Floor No:</strong> {apt.floorNo}</li>
                   <li><strong>Block Name:</strong> {apt.blockName}</li>
@@ -134,6 +165,22 @@ const Apartment = () => {
                 </button>
               </div>
             </motion.div>
+          ))}
+        </div>
+
+        {/* Pagination Controls */}
+        <div className="mt-12 flex justify-center gap-2 flex-wrap">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-4 py-2 rounded border ${currentPage === i + 1
+                ? 'bg-[#404042] text-white'
+                : 'bg-white dark:bg-[#1f1f23] text-[#404042] dark:text-white border-gray-300'
+                } hover:bg-[#fdb54c] transition`}
+            >
+              {i + 1}
+            </button>
           ))}
         </div>
       </div>
