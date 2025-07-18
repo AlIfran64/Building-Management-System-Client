@@ -49,6 +49,7 @@ const Apartment = () => {
       apartmentNo: apt.apartmentNo,
       rent: apt.rent,
       status: 'pending',
+      requestDate: new Date().toISOString().split('T')[0]
     };
 
     try {

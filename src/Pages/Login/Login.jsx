@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import logo from '../../../src/assets/images/logo1.png';
 import { useForm } from 'react-hook-form';
@@ -6,6 +6,8 @@ import { FcGoogle } from 'react-icons/fc';
 import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import useAxios from '../../Hooks/useAxios';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+
 
 const Login = () => {
 
@@ -14,6 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
   const from = location?.state?.from || '/';
   const axiosInstance = useAxios();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -127,17 +130,27 @@ const Login = () => {
             </div>
 
             {/* Password */}
-            <div>
+            <div className="relative">
               <label className="block text-sm font-medium text-[#404042] dark:text-gray-200 mb-1">Password</label>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 placeholder="Enter password"
                 autoComplete="off"
                 {...register('password', { required: true })}
-                className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2c2c2f] text-[#404042] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F5951D] hover:border-black transition"
+                className="w-full px-4 py-2 pr-10 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2c2c2f] text-[#404042] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F5951D] hover:border-black transition"
               />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-11 right-3 transform -translate-y-1/2 text-gray-500 dark:text-gray-300 hover:text-[#F5951D] flex items-center justify-center"
+              >
+                {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+              </button>
+
               {errors.password && <p className="text-red-500 text-sm mt-1">Password is required</p>}
             </div>
+
 
             {/* Submit Button */}
             <button

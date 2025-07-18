@@ -6,6 +6,7 @@ import useAuth from '../../Hooks/useAuth';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import useAxios from '../../Hooks/useAxios';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const Register = () => {
 
@@ -15,6 +16,7 @@ const Register = () => {
   const from = location?.state?.from || '/';
   const [profilePic, setProfilePic] = useState('');
   const axiosInstance = useAxios();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -33,17 +35,6 @@ const Register = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
-
-        // Update user info in db
-        // const userInfo = {
-        //   email: email,
-        //   role: 'user',
-        //   createdAt: new Date().toISOString()
-        // }
-
-        // const userRes = await axiosInstance.post('/users', userInfo);
-        // console.log(userRes.data);
-
 
         // Update user profile in firebase
         const userProfile = {
@@ -169,15 +160,18 @@ const Register = () => {
                 accept="image/*"
                 // {...register('photo', { required: true })}
                 className="w-full px-3 py-[0.4rem] rounded border border-gray-300 dark:border-gray-600 text-[#404042] dark:text-white bg-white dark:bg-[#2c2c2f] focus:outline-none focus:ring-2 focus:ring-[#F5951D]"
+                required
               />
               {errors.photo && <p className="text-red-500 text-sm mt-1">Photo is required</p>}
             </div>
 
             {/* Password */}
-            <div>
-              <label className="block text-sm font-medium text-[#404042] dark:text-gray-200 mb-1">Password</label>
+            <div className="relative">
+              <label className="block text-sm font-medium text-[#404042] dark:text-gray-200 mb-1">
+                Password
+              </label>
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 {...register('password', {
                   required: true,
                   minLength: 6,
@@ -187,12 +181,31 @@ const Register = () => {
                   }
                 })}
                 placeholder="Enter password"
-                className="w-full px-4 py-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2c2c2f] text-[#404042] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F5951D] hover:border-black transition"
+                className="w-full px-4 py-2 pr-10 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#2c2c2f] text-[#404042] dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F5951D] hover:border-black transition"
               />
-              {errors.password?.type === 'required' && <p className="text-red-500 text-sm mt-1">Password is required</p>}
-              {errors.password?.type === 'minLength' && <p className="text-red-500 text-sm mt-1">At least 6 characters</p>}
-              {errors.password?.type === 'hasUpperCase' && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
-              {errors.password?.type === 'hasLowerCase' && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
+
+              {/* Toggle Icon */}
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute top-11 right-3 transform -translate-y-1/2 text-gray-500 dark:text-gray-300 hover:text-[#F5951D] flex items-center justify-center"
+              >
+                {showPassword ? <FiEyeOff size={18} /> : <FiEye size={18} />}
+              </button>
+
+              {/* Errors */}
+              {errors.password?.type === 'required' && (
+                <p className="text-red-500 text-sm mt-1">Password is required</p>
+              )}
+              {errors.password?.type === 'minLength' && (
+                <p className="text-red-500 text-sm mt-1">At least 6 characters</p>
+              )}
+              {errors.password?.type === 'hasUpperCase' && (
+                <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+              )}
+              {errors.password?.type === 'hasLowerCase' && (
+                <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+              )}
             </div>
 
             {/* Register Button */}
