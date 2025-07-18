@@ -37,7 +37,7 @@ const DashboardLayout = () => {
   return (
     <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white relative">
       {/* Sidebar - Large Screen */}
-      <aside className="hidden lg:flex w-64 bg-[#1e1e1f] text-white flex-col p-5 min-h-screen">
+      <aside className="hidden lg:flex w-64 bg-[#1e1e1f] text-white flex-col p-5 fixed top-0 left-0 h-screen overflow-auto">
         <Link to="/" className="mb-10 flex items-center gap-2">
           <img src={logo} alt="logo" className="w-10" />
           <h1 className="text-2xl font-bold">
@@ -100,7 +100,7 @@ const DashboardLayout = () => {
       </div>
 
       {/* Main Outlet */}
-      <main className="flex-1 p-5 pt-20 lg:pt-5 bg-white dark:bg-[#121212] overflow-y-auto w-full">
+      <main className="flex-1 p-5 pt-20 lg:pt-5 bg-white dark:bg-[#121212] overflow-y-auto w-full lg:ml-64 h-screen">
         <Outlet />
       </main>
     </div>

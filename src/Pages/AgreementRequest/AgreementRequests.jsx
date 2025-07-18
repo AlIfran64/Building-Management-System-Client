@@ -80,23 +80,23 @@ const AgreementRequests = () => {
       )}
 
       {!isLoading && requests.length > 0 && (
-        <div className="overflow-x-auto">
-          <table className="min-w-full text-sm border dark:border-gray-700">
-            <thead className="bg-gray-200 dark:bg-gray-800 text-left">
+        <div className="overflow-x-auto bg-gray-100 dark:bg-[#1e1e1e] p-6 rounded shadow-md mb-8">
+          <table className="min-w-full text-left border border-gray-300 dark:border-gray-700">
+            <thead className="bg-gray-200 dark:bg-[#121212] text-gray-700 dark:text-gray-300">
               <tr>
-                <th className="px-4 py-2">User Name</th>
-                <th className="px-4 py-2">Email</th>
-                <th className="px-4 py-2">Floor</th>
-                <th className="px-4 py-2">Block</th>
-                <th className="px-4 py-2">Room</th>
-                <th className="px-4 py-2">Rent (TK)</th>
-                <th className="px-4 py-2">Date</th>
-                <th className="px-4 py-2">Actions</th>
+                <th className="py-2 px-4 border-b">User Name</th>
+                <th className="py-2 px-4 border-b">Email</th>
+                <th className="py-2 px-4 border-b">Floor</th>
+                <th className="py-2 px-4 border-b">Block</th>
+                <th className="py-2 px-4 border-b">Room</th>
+                <th className="py-2 px-4 border-b">Rent (TK)</th>
+                <th className="py-2 px-4 border-b">Request Date</th>
+                <th className="py-2 px-4 border-b text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
               {requests.map((req) => (
-                <tr key={req._id} className="border-t dark:border-gray-700">
+                <tr key={req._id} className="border-b text-center">
                   <td className="px-4 py-2">{req.userName}</td>
                   <td className="px-4 py-2">{req.email}</td>
                   <td className="px-4 py-2">{req.floorNo}</td>
@@ -104,7 +104,7 @@ const AgreementRequests = () => {
                   <td className="px-4 py-2">{req.apartmentNo}</td>
                   <td className="px-4 py-2">{req.rent}</td>
                   <td className="px-4 py-2">{new Date(req.requestDate).toLocaleDateString()}</td>
-                  <td className="px-4 py-2 space-x-2">
+                  <td className="px-4 py-2 space-x-2 text-center">
                     <button
                       onClick={() => handleAction(req._id, 'accept')}
                       className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
