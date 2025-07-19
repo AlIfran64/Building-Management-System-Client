@@ -37,7 +37,6 @@ const AdminProfile = () => {
     { name: 'Unavailable (%)', value: Number(roomStats.unavailablePercentage) || 0 },
   ];
 
-
   const userBarData = [
     {
       name: 'Users',
@@ -79,7 +78,7 @@ const AdminProfile = () => {
                   nameKey="name"
                   cx="50%"
                   cy="50%"
-                  outerRadius={90}
+                  outerRadius={80}
                   label
                 >
                   {roomPieData.map((entry, index) => (
