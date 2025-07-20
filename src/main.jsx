@@ -6,17 +6,20 @@ import { router } from './Router/Routes';
 import ThemeProvider from './Context/Theme/ThemeProvider';
 import AuthProvider from './Context/Auth/AuthProvider';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import PaymentProvider from './Context/Payment/PaymentProvider';
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider>
-      <AuthProvider>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
-      </AuthProvider>
+      <PaymentProvider>
+        <AuthProvider>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
+        </AuthProvider>
+      </PaymentProvider>
     </ThemeProvider>
   </StrictMode>,
 )

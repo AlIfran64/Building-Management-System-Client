@@ -51,11 +51,11 @@ const AdminProfile = () => {
       <p className="mb-8 text-gray-600 dark:text-gray-400">Manage your admin details and visualize system statistics.</p>
 
       {/* Admin Card */}
-      <div className="bg-white dark:bg-[#1e1e1e] shadow-md rounded-xl p-6 mb-10 flex flex-col md:flex-row items-center gap-6">
+      <div className="bg-white dark:bg-[#1e1e1e] shadow-md rounded-xl p-6 mb-5 flex flex-col md:flex-row items-center gap-6">
         <img
           src={user?.photoURL || 'https://via.placeholder.com/120'}
           alt="Admin"
-          className="w-24 h-24 rounded-full object-cover border-4 border-primary-600 shadow-lg"
+          className="w-24 h-24 rounded-full object-cover border-3 border-primary-600 shadow-lg"
         />
         <div>
           <p className="text-lg"><span className="font-semibold">Name:</span> {user?.displayName || 'N/A'}</p>
@@ -64,7 +64,7 @@ const AdminProfile = () => {
       </div>
 
       {/* Stat Cards */}
-      <div className="grid md:grid-cols-2 gap-8 mb-12">
+      <div className="grid md:grid-cols-2 gap-5 mb-12">
         {/* Room Stats */}
         <div className="bg-white dark:bg-[#1e1e1e] shadow-md rounded-xl p-6">
           <h2 className="text-xl font-semibold mb-4">Room Stats</h2>

@@ -56,12 +56,12 @@ const MakeAnnouncement = () => {
         <p className="text-gray-600 dark:text-gray-300 mt-1">Post a new update for all users and members.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-white dark:bg-[#1e1e1e] p-6 rounded-lg shadow-md space-y-4">
+      <form onSubmit={handleSubmit} className="bg-gray-100 dark:bg-[#1e1e1e] p-6 rounded-lg shadow-md space-y-4">
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
           <input
             type="text"
-            className="w-full px-4 py-2 border rounded-md bg-gray-50 dark:bg-[#121212] dark:border-gray-600 dark:text-white focus:outline-none focus:ring focus:border-blue-400"
+            className="w-full px-4 py-2 border rounded bg-gray-50 dark:bg-[#121212] border-gray-300 dark:border-gray-700 dark:text-white focus:outline-none focus:ring focus:border-blue-400"
             placeholder="Enter announcement title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -72,7 +72,7 @@ const MakeAnnouncement = () => {
           <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Description</label>
           <textarea
             rows="5"
-            className="w-full px-4 py-2 border rounded-md bg-gray-50 dark:bg-[#121212] dark:border-gray-600 dark:text-white focus:outline-none focus:ring focus:border-blue-400"
+            className="w-full px-4 py-2 border rounded-md bg-gray-50 dark:bg-[#121212] border-gray-300 dark:border-gray-700 dark:text-white focus:outline-none focus:ring focus:border-blue-400"
             placeholder="Enter detailed announcement..."
             value={description}
             onChange={(e) => setDescription(e.target.value)}
