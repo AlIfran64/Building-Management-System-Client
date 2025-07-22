@@ -80,7 +80,7 @@ const Coupons = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto py-20 px-4">
+    <div data-aos="fade-left" className="max-w-7xl mx-auto py-20 px-4">
       {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mt-2">Save with <span className='text-[#F5951D]'>Coupons</span></h1>

@@ -21,7 +21,7 @@ const ApartmentLocation = () => {
   const apartmentPosition = [23.8747, 90.3796]; // Uttara, Dhaka
 
   return (
-    <section className="bg-black/85 py-20 px-5 md:px-10">
+    <section data-aos="fade-right" className="bg-black/85 py-20 px-5 md:px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left Content */}
         <motion.div

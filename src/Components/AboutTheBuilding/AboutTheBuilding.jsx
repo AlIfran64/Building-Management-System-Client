@@ -52,7 +52,7 @@ const features = [
 
 const AboutTheBuilding = () => {
   return (
-    <section className="bg-white dark:bg-[#121212] py-20 px-5 sm:px-10 md:px-16 lg:px-24">
+    <section data-aos="fade-up" className="bg-white dark:bg-[#121212] py-20 px-5 sm:px-10 md:px-16 lg:px-24">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}

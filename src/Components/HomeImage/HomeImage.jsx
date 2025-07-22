@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 
 const HomeImage = () => {
   return (
-    <div className="relative w-full">
+    <div data-aos="fade-up" className="relative w-full">
       {/* Background Image */}
       <img
         src={home}
