@@ -60,7 +60,7 @@ const MakePayment = () => {
         Make Payment
       </h2>
       <p className='mb-6 text-gray-600 dark:text-white'>Ensure Security through payment process</p>
-      <div className="max-w-5xl mx-auto p-6 bg-white dark:bg-[#1e1e1e] rounded shadow-lg">
+      <div className="max-w-5xl mx-auto p-6 bg-white dark:bg-[#1e1e1e] rounded shadow-xl">
 
         <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Email */}
@@ -72,7 +72,7 @@ const MakePayment = () => {
               type="email"
               value={agreement.email}
               readOnly
-              className="w-full px-4 py-2 mt-1 text-gray-300 bg-gray-100 dark:bg-[#121212] rounded-lg cursor-not-allowed border border-gray-300 dark:border-gray-600"
+              className="w-full px-4 py-2 mt-1 text-gray-400 bg-gray-100 dark:bg-[#121212] rounded cursor-not-allowed border border-gray-300 dark:border-gray-600"
             />
           </div>
 
@@ -85,7 +85,7 @@ const MakePayment = () => {
               type="text"
               value={agreement.floorNo || ''}
               readOnly
-              className="w-full px-4 py-2 mt-1 text-gray-300 bg-gray-100 dark:bg-[#121212] rounded-lg cursor-not-allowed border border-gray-300 dark:border-gray-600"
+              className="w-full px-4 py-2 mt-1 text-gray-400 bg-gray-100 dark:bg-[#121212] rounded cursor-not-allowed border border-gray-300 dark:border-gray-600"
             />
           </div>
 
@@ -98,7 +98,7 @@ const MakePayment = () => {
               type="text"
               value={agreement.blockName || ''}
               readOnly
-              className="w-full px-4 py-2 mt-1 text-gray-300 bg-gray-100 dark:bg-[#121212] rounded-lg cursor-not-allowed border border-gray-300 dark:border-gray-600"
+              className="w-full px-4 py-2 mt-1 text-gray-400 bg-gray-100 dark:bg-[#121212] rounded cursor-not-allowed border border-gray-300 dark:border-gray-600"
             />
           </div>
 
@@ -111,7 +111,7 @@ const MakePayment = () => {
               type="text"
               value={agreement.apartmentNo || ''}
               readOnly
-              className="w-full px-4 py-2 mt-1 text-gray-300 bg-gray-100 dark:bg-[#121212] rounded-lg cursor-not-allowed border border-gray-300 dark:border-gray-600"
+              className="w-full px-4 py-2 mt-1 text-gray-400 bg-gray-100 dark:bg-[#121212] rounded cursor-not-allowed border border-gray-300 dark:border-gray-600"
             />
           </div>
 
@@ -124,7 +124,7 @@ const MakePayment = () => {
               type="text"
               value={`৳ ${agreement.rent || 0}`}
               readOnly
-              className="w-full px-4 py-2 mt-1 text-gray-300 bg-gray-100 dark:bg-[#121212] rounded-lg cursor-not-allowed border border-gray-300 dark:border-gray-600"
+              className="w-full px-4 py-2 mt-1 text-gray-400 bg-gray-100 dark:bg-[#121212] rounded cursor-not-allowed border border-gray-300 dark:border-gray-600"
             />
           </div>
 
@@ -134,7 +134,7 @@ const MakePayment = () => {
               Month
             </label>
             <select
-              className="w-full px-4 py-2 mt-1 bg-white dark:bg-[#121212] text-gray-300 dark:text-gray-200 rounded-lg border border-gray-300 dark:border-gray-600"
+              className="w-full px-4 py-2 mt-1 bg-white dark:bg-[#121212] text-black dark:text-gray-200 rounded border border-gray-300 dark:border-gray-600"
               value={userSelectedMonth}
               onChange={(e) => setUserSelectedMonth(e.target.value)}
             >

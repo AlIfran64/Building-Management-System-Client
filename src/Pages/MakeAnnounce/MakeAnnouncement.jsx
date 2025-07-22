@@ -56,7 +56,7 @@ const MakeAnnouncement = () => {
         <p className="text-gray-600 dark:text-gray-300 mt-1">Post a new update for all users and members.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-gray-100 dark:bg-[#1e1e1e] p-6 rounded-lg shadow-md space-y-4">
+      <form onSubmit={handleSubmit} className="bg-white dark:bg-[#1e1e1e] p-6 rounded-xl shadow-md space-y-4">
         <div>
           <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">Title</label>
           <input

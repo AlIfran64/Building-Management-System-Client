@@ -10,7 +10,7 @@ const MyProfile = () => {
       <p className="mb-6 text-gray-600 dark:text-white">Manage your personal information and account details.</p>
 
       {/* Section 1: User Information */}
-      <div className="bg-gray-100 dark:bg-[#1e1e1e] p-6 rounded shadow-md mb-8">
+      <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded shadow-xl mb-8">
         <h2 className="text-xl font-semibold mb-4">User Information</h2>
         <div className="flex flex-col md:flex-row items-center gap-6">
           <img
@@ -26,7 +26,7 @@ const MyProfile = () => {
       </div>
 
       {/* Section 2: Rented Apartment Info */}
-      <div className="bg-gray-100 dark:bg-[#1e1e1e] p-6 rounded shadow-md">
+      <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded shadow-xl">
         <h2 className="text-xl font-semibold mb-4">Rented Apartment Information</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full text-left border border-gray-300 dark:border-gray-700">

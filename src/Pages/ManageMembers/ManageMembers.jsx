@@ -44,7 +44,7 @@ const ManageMembers = () => {
         View all current members and manage their access.
       </p>
 
-      <div className="bg-gray-100 dark:bg-[#1e1e1e] p-6 rounded shadow-md">
+      <div className="bg-white dark:bg-[#1e1e1e] p-6 rounded shadow-xl">
         <h2 className="text-xl font-semibold mb-4">Members List</h2>
         <div className="overflow-x-auto">
           <table className="min-w-full text-left border border-gray-300 dark:border-gray-700">

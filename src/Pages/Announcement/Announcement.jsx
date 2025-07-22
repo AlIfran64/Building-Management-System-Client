@@ -38,7 +38,7 @@ const Announcement = () => {
           {announcements.map((item) => (
             <div
               key={item._id}
-              className="p-6 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition bg-gray-50 dark:bg-[#1E1E1E]"
+              className="p-6 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl hover:shadow-md transition bg-white dark:bg-[#1E1E1E]"
             >
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
                 {item.title}

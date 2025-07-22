@@ -73,7 +73,7 @@ const ManageCoupons = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto bg-gray-100 dark:bg-[#1e1e1e] p-6 rounded shadow-md">
+      <div className="overflow-x-auto bg-white dark:bg-[#1e1e1e] p-6 rounded shadow-xl">
         {isLoading ? (
           <p>Loading coupons...</p>
         ) : coupons.length === 0 ? (
@@ -142,7 +142,7 @@ const ManageCoupons = () => {
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-4 py-2 bg-gray-300 dark:bg-gray-600 rounded hover:bg-gray-400"
+                  className="px-4 py-2 bg-gray-300 dark:bg-gray-600 rounded hover:bg-gray-400 hover:text-white"
                 >
                   Cancel
                 </button>

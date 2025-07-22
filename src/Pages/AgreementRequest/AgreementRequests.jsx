@@ -80,7 +80,7 @@ const AgreementRequests = () => {
       )}
 
       {!isLoading && requests.length > 0 && (
-        <div className="overflow-x-auto bg-gray-100 dark:bg-[#1e1e1e] p-6 rounded shadow-md mb-8">
+        <div className="overflow-x-auto bg-white dark:bg-[#1e1e1e] p-6 rounded shadow-xl mb-8">
           <table className="min-w-full text-left border border-gray-300 dark:border-gray-700">
             <thead className="bg-gray-200 dark:bg-[#121212] text-gray-700 dark:text-gray-300">
               <tr>
