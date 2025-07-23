@@ -20,6 +20,9 @@ import ManageCoupons from "../Pages/ManageCoupons/ManageCoupons";
 import PaymentProceed from "../Pages/MakePayment/PaymentProceed";
 import AdminRoutes from "./AdminRoutes";
 import Forbidden from "../Pages/Forbidden/Forbidden";
+import DashboardRedirect from "../Pages/DashboardRedirect/DashboardRedirect";
+import MemberRoutes from "./MemberRoutes";
+import UserAndMemberRoutes from "./UserAndMemberRoutes";
 
 export const router = createBrowserRouter([
 
@@ -35,10 +38,6 @@ export const router = createBrowserRouter([
       {
         path: '/apartment',
         element: <Apartment></Apartment>
-      },
-      {
-        path: '/forbidden',
-        element: <Forbidden></Forbidden>
       }
     ]
   },
@@ -70,25 +69,48 @@ export const router = createBrowserRouter([
       </PrivateRoutes>,
     children: [
       {
+        index: true,
+        element: <DashboardRedirect></DashboardRedirect>
+      },
+      {
         path: 'myProfile',
-        element: <MyProfile></MyProfile>
+        element:
+          <UserAndMemberRoutes>
+            <MyProfile></MyProfile>
+          </UserAndMemberRoutes>
       },
       {
         path: 'announcement',
-        element: <Announcement></Announcement>
+        element:
+          <UserAndMemberRoutes>
+            <Announcement></Announcement>
+          </UserAndMemberRoutes>
       },
+
+      // Member
       {
         path: 'makePayment',
-        element: <MakePayment></MakePayment>
+        element:
+          <MemberRoutes>
+            <MakePayment></MakePayment>
+          </MemberRoutes>
       },
       {
         path: 'paymentProceed/:id',
-        element: <PaymentProceed></PaymentProceed>
+        element:
+          <MemberRoutes>
+            <PaymentProceed></PaymentProceed>
+          </MemberRoutes>
       },
       {
         path: 'paymentHistory',
-        element: <PaymentHistory></PaymentHistory>
+        element:
+          <MemberRoutes>
+            <PaymentHistory></PaymentHistory>
+          </MemberRoutes>
       },
+
+      // Admin
       {
         path: 'adminProfile',
         element: <AdminRoutes>
@@ -124,6 +146,12 @@ export const router = createBrowserRouter([
           </AdminRoutes>
       }
     ]
+  },
+
+  // Forbidden
+  {
+    path: '/forbidden',
+    element: <Forbidden></Forbidden>
   },
 
   // Error page
