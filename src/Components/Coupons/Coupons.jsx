@@ -27,79 +27,53 @@ const Coupons = () => {
   if (isLoading) return <Loading />;
   if (isError) return <p className="text-center text-red-500 py-10">Failed to load coupons</p>;
 
-  // Navigation handlers
-  const handlePrev = () => {
-    if (currentIndex > 0) setCurrentIndex(currentIndex - 1);
-  };
+  // Navigation
+  const handlePrev = () => currentIndex > 0 && setCurrentIndex(currentIndex - 1);
+  const handleNext = () => currentIndex < coupons.length - 1 && setCurrentIndex(currentIndex + 1);
+  const handlePaginationClick = (index) => setCurrentIndex(index);
 
-  const handleNext = () => {
-    if (currentIndex < coupons.length - 1) setCurrentIndex(currentIndex + 1);
-  };
-
-  const handlePaginationClick = (index) => {
-    setCurrentIndex(index);
-  };
-
-  // Get visible coupons logic
+  // Responsive visible coupons
   const visibleCoupons = (() => {
     if (isMobile) return [coupons[currentIndex]];
-
     const total = coupons.length;
-
-    // We want to show 3 coupons on desktop, with current coupon centered if possible
     let start = currentIndex - 1;
     let end = currentIndex + 2;
-
-    // If start < 0, shift right
     if (start < 0) {
       start = 0;
       end = Math.min(3, total);
     }
-
-    // If end > total, shift left
     if (end > total) {
       end = total;
       start = Math.max(0, end - 3);
     }
-
     return coupons.slice(start, end);
   })();
 
-  // Calculate which visible coupon index is the current active one
-  // On mobile, always 0; on desktop, current coupon is at index 1 normally, else adjust at edges
-  let activeVisibleIndex = 0;
-  if (!isMobile) {
-    // Default active is 1 (middle)
-    activeVisibleIndex = 1;
-
-    // If at start edge (currentIndex 0), active is at 0
-    if (currentIndex === 0) activeVisibleIndex = 0;
-
-    // If at end edge (currentIndex last), active is last index in visibleCoupons (usually 2 or less)
-    if (currentIndex === coupons.length - 1) activeVisibleIndex = visibleCoupons.length - 1;
-  }
+  // Active card highlight index
+  let activeVisibleIndex = isMobile ? 0 : currentIndex === 0 ? 0 : currentIndex === coupons.length - 1 ? visibleCoupons.length - 1 : 1;
 
   return (
-    <div data-aos="fade-left" className="max-w-7xl mx-auto py-20 px-4">
+    <div data-aos="fade-left" className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-10">
       {/* Header */}
       <div className="text-center mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mt-2">Save with <span className='text-[#F5951D]'>Coupons</span></h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mt-2">
+          Save with <span className="text-[#F5951D]">Coupons</span>
+        </h1>
         <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mt-4">
           Unlock special discounts with our latest coupon deals—designed to help you save more on every purchase.
         </p>
       </div>
 
       {/* Coupon Cards */}
-      <div className="flex flex-wrap justify-center lg:justify-between gap-6 transition-all duration-500">
+      <div className="flex flex-wrap justify-center md:justify-between gap-6 transition-all duration-500">
         {visibleCoupons.map((coupon, index) => {
           const isCenter = index === activeVisibleIndex;
-
           return (
             <div
               key={coupon._id}
-              className={`flex-1 max-w-sm w-full p-6 rounded shadow-lg transition-all duration-300 ${isCenter
-                ? 'border-2 border-[#F5951D] scale-105 z-10 bg-white dark:bg-zinc-800'
-                : 'opacity-60 bg-white dark:bg-zinc-800'
+              className={`w-full max-w-[320px] md:flex-1 p-6 rounded shadow-lg transition-all duration-300 ${isCenter
+                  ? 'border-2 border-[#F5951D] scale-105 z-10 bg-white dark:bg-zinc-800'
+                  : 'opacity-60 bg-white dark:bg-zinc-800'
                 }`}
             >
               <div className="flex items-center gap-2 mb-3 text-[#F5951D]">
@@ -121,24 +95,26 @@ const Coupons = () => {
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-center items-center gap-4 mt-10">
+      <div className="flex justify-center items-center gap-4 mt-10 flex-wrap">
         {/* Left Arrow */}
         <button
           onClick={handlePrev}
           disabled={currentIndex === 0}
-          className={`w-10 h-10 flex items-center justify-center rounded-full border transition-colors duration-300 ${currentIndex === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-[#F5951D] hover:text-white'
+          className={`w-10 h-10 flex items-center justify-center rounded-full border transition-colors duration-300 ${currentIndex === 0
+              ? 'opacity-40 cursor-not-allowed'
+              : 'hover:bg-[#F5951D] hover:text-white'
             } text-[#03373D] dark:text-white border-[#F5951D] bg-white dark:bg-zinc-800`}
         >
           <ChevronLeft size={20} />
         </button>
 
         {/* Dots */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           {coupons.map((_, index) => (
             <button
               key={index}
               onClick={() => handlePaginationClick(index)}
-              className={`w-3 h-3 rounded-full transition-all ${index === currentIndex ? 'bg-[#404042]' : 'bg-gray-300 hover:bg-gray-400'
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex ? 'bg-[#404042]' : 'bg-gray-300 hover:bg-gray-400'
                 }`}
             ></button>
           ))}
@@ -149,8 +125,8 @@ const Coupons = () => {
           onClick={handleNext}
           disabled={currentIndex === coupons.length - 1}
           className={`w-10 h-10 flex items-center justify-center rounded-full border transition-colors duration-300 ${currentIndex === coupons.length - 1
-            ? 'opacity-40 cursor-not-allowed'
-            : 'hover:bg-[#F5951D] hover:text-white'
+              ? 'opacity-40 cursor-not-allowed'
+              : 'hover:bg-[#F5951D] hover:text-white'
             } text-[#03373D] dark:text-white border-[#F5951D] bg-white dark:bg-zinc-800`}
         >
           <ChevronRight size={20} />

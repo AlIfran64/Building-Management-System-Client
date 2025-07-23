@@ -14,29 +14,20 @@ import {
   Gift
 } from 'lucide-react';
 import logo from '../../../src/assets/images/logo1.png';
+import useUserRole from '../../Hooks/useUserRole';
 
 const DashboardLayout = () => {
+  const { role, roleLoading } = useUserRole();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
-  const navItems = [
-    { to: "/dashboard/myProfile", label: "My Profile", Icon: User },
-    { to: "/dashboard/announcement", label: "Announcement", Icon: Megaphone },
-    { to: "/dashboard/makePayment", label: "Make Payment", Icon: CreditCard },
-    { to: "/dashboard/paymentHistory", label: "Payment History", Icon: History },
-    { to: "/dashboard/adminProfile", label: "Admin Profile", Icon: Shield },
-    { to: "/dashboard/manageMembers", label: "Manage Members", Icon: Users },
-    { to: "/dashboard/makeAnnouncement", label: "Make Announce", Icon: MessageCircle },
-    { to: "/dashboard/agreementRequests", label: "Agreement Requests", Icon: FileText },
-    { to: "/dashboard/manageCoupons", label: "Manage Coupons", Icon: Gift }
-  ];
-
   return (
     <div className="min-h-screen flex bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white relative">
-      {/* Sidebar - Large Screen */}
+
+      {/* Sidebar for Large Screen */}
       <aside className="hidden lg:flex w-64 bg-[#1e1e1f] text-white flex-col p-5 fixed top-0 left-0 h-screen overflow-auto">
         <Link to="/" className="mb-10 flex items-center gap-2">
           <img src={logo} alt="logo" className="w-10" />
@@ -46,23 +37,107 @@ const DashboardLayout = () => {
           </h1>
         </Link>
 
-        <nav className="flex flex-col gap-2">
-          {navItems.map(({ to, label, Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
-                }`
-              }
-            >
-              <Icon size={18} /> {label}
-            </NavLink>
-          ))}
-        </nav>
+        <ul className="flex flex-col gap-2">
+
+          {/* for user and member */}
+          {
+            !roleLoading && role !== "admin" &&
+            <>
+              <li>
+                <NavLink to="/dashboard/myProfile" className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }>
+                  <User size={18} /> My Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/announcement" className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }>
+                  <Megaphone size={18} /> Announcement
+                </NavLink>
+              </li>
+            </>
+          }
+
+
+          {/* for member */}
+
+          {
+            !roleLoading && role === "member" &&
+            <>
+              <li>
+                <NavLink to="/dashboard/makePayment" className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }>
+                  <CreditCard size={18} /> Make Payment
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/paymentHistory" className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }>
+                  <History size={18} /> Payment History
+                </NavLink>
+              </li>
+            </>
+          }
+
+
+          {/* for admin */}
+          {!roleLoading && role === "admin" &&
+
+            <>
+              <li>
+                <NavLink to="/dashboard/adminProfile" className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }>
+                  <Shield size={18} /> Admin Profile
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manageMembers" className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }>
+                  <Users size={18} /> Manage Members
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/makeAnnouncement" className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }>
+                  <MessageCircle size={18} /> Make Announce
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/agreementRequests" className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }>
+                  <FileText size={18} /> Agreement Requests
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manageCoupons" className={({ isActive }) =>
+                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                  }`
+                }>
+                  <Gift size={18} /> Manage Coupons
+                </NavLink>
+              </li>
+            </>
+          }
+        </ul>
       </aside>
 
-      {/* Drawer - Small Screen */}
+      {/* Drawer for Mobile */}
       <div className="lg:hidden fixed top-0 left-0 w-full bg-[#1e1e1f] flex items-center justify-between px-5 py-4 z-40">
         <Link to="/" className="flex items-center gap-2">
           <img src={logo} alt="logo" className="w-8" />
@@ -75,31 +150,109 @@ const DashboardLayout = () => {
         </button>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Menu */}
       <div
         className={`fixed top-0 left-0 h-full w-64 bg-[#1e1e1f] text-white z-30 transform transition-transform duration-300 ${isDrawerOpen ? 'translate-x-0' : '-translate-x-full'
           } lg:hidden`}
       >
         <div className="p-5">
-          <nav className="flex flex-col gap-4 mt-12">
-            {navItems.map(({ to, label, Icon }) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
-                  }`
-                }
-                onClick={() => setIsDrawerOpen(false)}
-              >
-                <Icon size={18} /> {label}
+          <ul className="flex flex-col gap-4 mt-12">
+
+            {/* for user and member */}
+            <li>
+              <NavLink to="/dashboard/myProfile" onClick={() => setIsDrawerOpen(false)} className={({ isActive }) =>
+                `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                }`
+              }>
+                <User size={18} /> My Profile
               </NavLink>
-            ))}
-          </nav>
+            </li>
+            <li>
+              <NavLink to="/dashboard/announcement" onClick={() => setIsDrawerOpen(false)} className={({ isActive }) =>
+                `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                }`
+              }>
+                <Megaphone size={18} /> Announcement
+              </NavLink>
+            </li>
+
+            {/* for member */}
+
+            {
+              !roleLoading && role === "member" &&
+              <>
+                <li>
+                  <NavLink to="/dashboard/makePayment" onClick={() => setIsDrawerOpen(false)} className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                    }`
+                  }>
+                    <CreditCard size={18} /> Make Payment
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/paymentHistory" onClick={() => setIsDrawerOpen(false)} className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                    }`
+                  }>
+                    <History size={18} /> Payment History
+                  </NavLink>
+                </li>
+              </>
+            }
+
+            {/* for admin */}
+            {
+              !roleLoading && role === "admin" &&
+              <>
+                <li>
+                  <NavLink to="/dashboard/adminProfile" onClick={() => setIsDrawerOpen(false)} className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                    }`
+                  }>
+                    <Shield size={18} /> Admin Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/manageMembers" onClick={() => setIsDrawerOpen(false)} className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                    }`
+                  }>
+                    <Users size={18} /> Manage Members
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/makeAnnouncement" onClick={() => setIsDrawerOpen(false)} className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                    }`
+                  }>
+                    <MessageCircle size={18} /> Make Announce
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/agreementRequests" onClick={() => setIsDrawerOpen(false)} className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                    }`
+                  }>
+                    <FileText size={18} /> Agreement Requests
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/manageCoupons" onClick={() => setIsDrawerOpen(false)} className={({ isActive }) =>
+                    `flex items-center gap-2 px-4 py-2 rounded transition duration-200 ${isActive ? 'bg-[#F5951D] text-white' : 'hover:bg-[#808185] text-white'
+                    }`
+                  }>
+                    <Gift size={18} /> Manage Coupons
+                  </NavLink>
+                </li>
+              </>
+            }
+
+
+          </ul>
         </div>
       </div>
 
-      {/* Main Outlet */}
+      {/* Page Content */}
       <main className="flex-1 p-5 pt-20 lg:pt-5 bg-white dark:bg-[#121212] overflow-y-auto w-full lg:ml-64 h-screen">
         <Outlet />
       </main>

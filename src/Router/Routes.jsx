@@ -18,6 +18,8 @@ import MakeAnnouncement from "../Pages/MakeAnnounce/MakeAnnouncement";
 import AgreementRequests from "../Pages/AgreementRequest/AgreementRequests";
 import ManageCoupons from "../Pages/ManageCoupons/ManageCoupons";
 import PaymentProceed from "../Pages/MakePayment/PaymentProceed";
+import AdminRoutes from "./AdminRoutes";
+import Forbidden from "../Pages/Forbidden/Forbidden";
 
 export const router = createBrowserRouter([
 
@@ -33,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: '/apartment',
         element: <Apartment></Apartment>
+      },
+      {
+        path: '/forbidden',
+        element: <Forbidden></Forbidden>
       }
     ]
   },
@@ -85,23 +91,37 @@ export const router = createBrowserRouter([
       },
       {
         path: 'adminProfile',
-        element: <AdminProfile></AdminProfile>
+        element: <AdminRoutes>
+          <AdminProfile></AdminProfile>
+        </AdminRoutes>
       },
       {
         path: 'manageMembers',
-        element: <ManageMembers></ManageMembers>
+        element:
+          <AdminRoutes>
+            <ManageMembers></ManageMembers>
+          </AdminRoutes>
       },
       {
         path: 'makeAnnouncement',
-        element: <MakeAnnouncement></MakeAnnouncement>
+        element:
+          <AdminRoutes>
+            <MakeAnnouncement></MakeAnnouncement>
+          </AdminRoutes>
       },
       {
         path: 'agreementRequests',
-        element: <AgreementRequests></AgreementRequests>
+        element:
+          <AdminRoutes>
+            <AgreementRequests></AgreementRequests>
+          </AdminRoutes>
       },
       {
         path: 'manageCoupons',
-        element: <ManageCoupons></ManageCoupons>
+        element:
+          <AdminRoutes>
+            <ManageCoupons></ManageCoupons>
+          </AdminRoutes>
       }
     ]
   },

@@ -33,7 +33,7 @@ const Login = () => {
     login(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+
         Swal.fire({
           title: 'Success!',
           text: 'You have logged in successfully.',

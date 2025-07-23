@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import useAxios from '../../Hooks/useAxios';
+
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const MakeAnnouncement = () => {
-  const axios = useAxios();
+  const axiosSecure = useAxiosSecure();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(false);
@@ -22,7 +23,7 @@ const MakeAnnouncement = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('/announcements', {
+      const res = await axiosSecure.post('/announcements', {
         title,
         description,
         createdAt: new Date()
