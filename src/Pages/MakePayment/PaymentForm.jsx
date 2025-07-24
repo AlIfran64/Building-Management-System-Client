@@ -170,8 +170,8 @@ const PaymentForm = () => {
         </div>
 
         {finalRent && (
-          <div className='text-lg text-center text-green-400'>
-            Final Rent after discount: ৳{finalRent.toFixed(2)}
+          <div className='text-lg text-center'>
+            Final Rent after discount: ${finalRent.toFixed(2)}
           </div>
         )}
 
