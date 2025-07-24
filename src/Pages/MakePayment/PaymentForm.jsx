@@ -56,12 +56,23 @@ const PaymentForm = () => {
       setDiscount(discountAmount);
       setFinalRent(agreementInfo.rent - discountAmount);
       setAppliedCoupon(matched);
-      Swal.fire("Success", `Coupon Applied! Discount: ৳${discountAmount}`, "success");
+      Swal.fire({
+        title: "Success",
+        text: `Coupon Applied! Discount: $${discountAmount}`,
+        icon: "success",
+        confirmButtonColor: "#F5951D"
+      });
+
     } else {
       setDiscount(0);
       setFinalRent(agreementInfo.rent);
       setAppliedCoupon(null);
-      Swal.fire("Invalid", "Coupon code is not valid or not available", "error");
+      Swal.fire({
+        title: "Invalid",
+        text: "Coupon code is not valid or not available",
+        icon: "error",
+        confirmButtonColor: "#d33"
+      });
     }
   };
 
