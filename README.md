@@ -2,28 +2,63 @@
 
 Welcome to **BrickBase**, a comprehensive Building Management System (BMS) designed to simplify and automate the management of residential and commercial buildings.
 
-🌐 **Live URL**: [https://brickbase-4d222.web.app/](https://brickbase-4d222.web.app/)
+🔗 **Live Site**: [https://brickbase-4d222.web.app/](https://brickbase-4d222.web.app/)
 
 ---
 
 ## 📌 Purpose
 
-BrickBase streamlines building administration tasks such as resident management, facility bookings, payment processing, issue tracking, and communication between management and tenants. It's built for property managers, building owners, and residents to improve transparency and operational efficiency.
+BrickBase streamlines building administration tasks such as user management, facility agreements, payment processing, tracking, and communication between management and tenants. It's built for apartment members, building owners, and users to improve transparency and operational efficiency.
 
 ---
 
 ## ✨ Key Features
 
-- 🔐 **Role-Based Authentication** (Admin, Manager, Resident)
-- 🏢 **Apartment and Building Unit Management**
-- 💳 **Online Payments with Stripe Integration**
-- 📆 **Booking System for Shared Facilities**
-- 📨 **Notice Board and Complaint Handling**
-- 📍 **Interactive Map with Leaflet Integration**
-- 📊 **Dashboard with Analytics and Reports**
-- ✅ **Form Handling with Validation**
-- 🔄 **Real-Time Data Fetching with React Query**
-- 📦 **Responsive and Animated UI with Tailwind & Framer Motion**
+-  **Role-Based Authentication** (Admin, Member, User)
+-  **Apartment and Building Unit Management**
+-  **Online Payments with Stripe Integration**
+-  **Discount via coupon codes**
+-  **Agreement System for Shared Facilities**
+-  **Interactive Map with Leaflet Integration**
+-  **Dashboard with Analytics and Reports**
+-  **Form Handling with Validation**
+-  **Real-Time Data Fetching with React Query**
+-  **Responsive and Animated UI with Tailwind & Framer Motion**
+-  **Rent Payment Tracking**
+-  **RESTFUL API (CRUD) Implemented**
+-  **Real-time announcements**
+-  **Theme Toggling Suported**
+
+---
+
+## 🚀 Tech Stack
+
+### Frontend:
+- **React.js**
+- **Tailwind CSS** + **DaisyUI**
+- **HTML5**, **CSS3**
+- **React Router**
+- **Framer Motion**
+- **React Hook Form**
+- **React Leaflet**
+- **Swiper.js**
+- **Recharts**
+- **Lucide React**
+- **AOS (Animate on Scroll)**
+
+### Backend:
+- **Node.js**
+- **Express.js**
+- **MongoDB (Atlas)**
+
+### Authentication & Hosting:
+- **Firebase Auth**
+- **Firebase Hosting**
+- **Firebase Admin SDK**
+
+### Payment Gateway:
+- **Stripe**
+
 
 ---
 
