@@ -65,7 +65,9 @@ const ManageCoupons = () => {
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Yes',
-      cancelButtonText: 'Cancel'
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#F5951D',
+      cancelButtonColor: '#d33'
     });
 
     if (confirm.isConfirmed) {
