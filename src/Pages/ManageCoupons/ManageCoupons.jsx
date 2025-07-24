@@ -74,9 +74,21 @@ const ManageCoupons = () => {
       try {
         await axiosSecure.patch(`/coupons/${coupon._id}/status`, { status: newStatus });
         queryClient.invalidateQueries(['coupons']);
-        Swal.fire('Updated!', 'Coupon status updated.', 'success');
+        Swal.fire({
+          title: 'Updated!',
+          text: 'Coupon status updated.',
+          icon: 'success',
+          confirmButtonColor: '#F5951D'
+        });
+
       } catch (error) {
-        Swal.fire('Error!', 'Failed to update status.', error);
+        Swal.fire({
+          title: 'Error!',
+          text: error?.message || 'Failed to update status.',
+          icon: 'error',
+          confirmButtonColor: '#d33'
+        });
+
       }
     }
   };
