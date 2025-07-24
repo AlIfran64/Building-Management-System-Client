@@ -14,7 +14,7 @@ const Forbidden = () => {
 
       {/* Error Message */}
       <p className="text-center text-xl sm:text-2xl font-semibold mb-4">
-        Oops! Forbidden Access
+        Ops! Forbidden Access
       </p>
 
       {/* Home Button */}

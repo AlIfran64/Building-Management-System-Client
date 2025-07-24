@@ -51,9 +51,12 @@ const Apartment = () => {
       status: 'pending',
       requestDate: new Date().toISOString().split('T')[0]
     };
+    console.log(agreementData);
 
     try {
       const res = await axiosSecure.post('/agreements', agreementData);
+      console.log(res);
+
       if (res.data.insertedId) {
         Swal.fire({
           icon: 'success',
@@ -63,6 +66,8 @@ const Apartment = () => {
         });
       }
     } catch (err) {
+      console.log(err);
+
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
