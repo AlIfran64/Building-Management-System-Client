@@ -2,8 +2,8 @@
 
 Welcome to **BrickBase**, a comprehensive Building Management System (BMS) designed to simplify and automate the management of residential and commercial buildings.
 
-🔗 **Live Site**: [https://brickbase-4d222.web.app/](https://brickbase-4d222.web.app/)
-
+## 🔗 Live Site
+- 🌐 [https://brickbase-4d222.web.app/](https://brickbase-4d222.web.app/)
 ---
 
 ## 📌 Purpose
