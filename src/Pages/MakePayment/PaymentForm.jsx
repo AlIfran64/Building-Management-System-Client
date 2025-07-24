@@ -50,7 +50,7 @@ const PaymentForm = () => {
   });
 
   const handleApplyCoupon = () => {
-    const matched = coupons.find(c => c.code === couponCode.trim());
+    const matched = coupons.find(c => c.code === couponCode.trim() && c.status === 'available');
     if (matched) {
       const discountAmount = (agreementInfo.rent * matched.discount) / 100;
       setDiscount(discountAmount);
@@ -61,9 +61,10 @@ const PaymentForm = () => {
       setDiscount(0);
       setFinalRent(agreementInfo.rent);
       setAppliedCoupon(null);
-      Swal.fire("Invalid", "Coupon code is not valid", "error");
+      Swal.fire("Invalid", "Coupon code is not valid or not available", "error");
     }
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

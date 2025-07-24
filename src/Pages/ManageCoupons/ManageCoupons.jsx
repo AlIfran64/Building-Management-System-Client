@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import useAxios from '../../Hooks/useAxios';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const ManageCoupons = () => {
   const axios = useAxios();
+  const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,7 +27,7 @@ const ManageCoupons = () => {
   // Add coupon mutation
   const mutation = useMutation({
     mutationFn: async (newCoupon) => {
-      return await axios.post('/coupons', newCoupon);
+      return await axiosSecure.post('/coupons', { ...newCoupon, status: 'available' });
     },
     onSuccess: () => {
       queryClient.invalidateQueries(['coupons']);
@@ -53,6 +55,28 @@ const ManageCoupons = () => {
       ...prev,
       [e.target.name]: e.target.value
     }));
+  };
+
+  const handleStatusChange = async (coupon) => {
+    const newStatus = coupon.status === 'available' ? 'unavailable' : 'available';
+    const confirm = await Swal.fire({
+      title: 'Change Status?',
+      text: `Change coupon status to "${newStatus}"?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      cancelButtonText: 'Cancel'
+    });
+
+    if (confirm.isConfirmed) {
+      try {
+        await axiosSecure.patch(`/coupons/${coupon._id}/status`, { status: newStatus });
+        queryClient.invalidateQueries(['coupons']);
+        Swal.fire('Updated!', 'Coupon status updated.', 'success');
+      } catch (error) {
+        Swal.fire('Error!', 'Failed to update status.', error);
+      }
+    }
   };
 
   return (
@@ -86,6 +110,8 @@ const ManageCoupons = () => {
                 <th className="py-2 px-4 border-b">Coupon Code</th>
                 <th className="py-2 px-4 border-b">Discount (%)</th>
                 <th className="py-2 px-4 border-b">Description</th>
+                <th className="py-2 px-4 border-b">Status</th>
+                <th className="py-2 px-4 border-b">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -95,6 +121,22 @@ const ManageCoupons = () => {
                   <td className="px-4 py-2">{coupon.code}</td>
                   <td className="px-4 py-2">{coupon.discount}</td>
                   <td className="px-4 py-2">{coupon.description}</td>
+                  <td className="px-4 py-2 capitalize">
+                    <span className={`px-2 py-1 rounded-full text-xs font-semibold ${coupon.status === 'available'
+                      ? 'bg-green-100 text-green-600'
+                      : 'bg-red-100 text-red-600'
+                      }`}>
+                      {coupon.status}
+                    </span>
+                  </td>
+                  <td className="px-4 py-2">
+                    <button
+                      onClick={() => handleStatusChange(coupon)}
+                      className="bg-[#F5951D] hover:bg-[#f5941dba] text-white px-3 py-1 rounded text-sm"
+                    >
+                      Change Status
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

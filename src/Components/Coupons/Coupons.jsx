@@ -53,7 +53,7 @@ const Coupons = () => {
   let activeVisibleIndex = isMobile ? 0 : currentIndex === 0 ? 0 : currentIndex === coupons.length - 1 ? visibleCoupons.length - 1 : 1;
 
   return (
-    <div data-aos="fade-left" className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-10">
+    <div data-aos="fade-left" className="w-11/12 mx-auto py-20 px-4 sm:px-6 lg:px-10">
       {/* Header */}
       <div className="text-center mb-10">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mt-2">
@@ -65,33 +65,50 @@ const Coupons = () => {
       </div>
 
       {/* Coupon Cards */}
-      <div className="flex flex-wrap justify-center md:justify-between gap-6 transition-all duration-500">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500">
         {visibleCoupons.map((coupon, index) => {
           const isCenter = index === activeVisibleIndex;
+          const isAvailable = coupon.status === 'available';
+
           return (
             <div
               key={coupon._id}
-              className={`w-full max-w-[320px] md:flex-1 p-6 rounded shadow-lg transition-all duration-300 ${isCenter
-                  ? 'border-2 border-[#F5951D] scale-105 z-10 bg-white dark:bg-zinc-800'
-                  : 'opacity-60 bg-white dark:bg-zinc-800'
+              className={`w-full md:flex-1 p-6 rounded shadow-lg transition-all duration-300 ${isCenter
+                ? 'border-2 border-[#F5951D] scale-105 z-10 bg-white dark:bg-zinc-800'
+                : 'opacity-60 bg-white dark:bg-zinc-800'
                 }`}
             >
-              <div className="flex items-center gap-2 mb-3 text-[#F5951D]">
-                <FaTags size={20} />
-                <span className="text-lg font-semibold text-gray-800 dark:text-white">Special Offer</span>
-              </div>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{coupon.description}</p>
+              <div className="flex items-center justify-between gap-2 mb-5 text-[#F5951D]">
+                <div className='flex items-center gap-2 mt-2'>
+                  <FaTags size={20} />
+                  <span className="text-lg font-semibold text-gray-800 dark:text-white">Special Offer</span>
+                </div>
 
-              <div className="text-md font-medium text-gray-900 dark:text-white mb-2">
+                <div>
+                  {/* Status badge */}
+                  <div className={`inline-block px-4 py-1 text-xs font-semibold rounded-full ${isAvailable
+                    ? 'bg-green-100 text-green-700'
+                    : 'bg-red-100 text-red-700'
+                    }`}>
+                    {coupon.status === 'available' ? 'Available' : 'Unavailable'}
+                  </div>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">{coupon.description}</p>
+
+              <div className="text-md font-medium text-gray-900 dark:text-white mb-4">
                 <strong>Code:</strong> {coupon.code}
               </div>
 
               <span className="inline-block px-6 py-2 text-sm font-semibold bg-[#F5951D] text-white rounded">
                 {coupon.discount}% OFF
               </span>
+
+
             </div>
           );
         })}
+
       </div>
 
       {/* Navigation */}
@@ -101,8 +118,8 @@ const Coupons = () => {
           onClick={handlePrev}
           disabled={currentIndex === 0}
           className={`w-10 h-10 flex items-center justify-center rounded-full border transition-colors duration-300 ${currentIndex === 0
-              ? 'opacity-40 cursor-not-allowed'
-              : 'hover:bg-[#F5951D] hover:text-white'
+            ? 'opacity-40 cursor-not-allowed'
+            : 'hover:bg-[#F5951D] hover:text-white'
             } text-[#03373D] dark:text-white border-[#F5951D] bg-white dark:bg-zinc-800`}
         >
           <ChevronLeft size={20} />
@@ -125,8 +142,8 @@ const Coupons = () => {
           onClick={handleNext}
           disabled={currentIndex === coupons.length - 1}
           className={`w-10 h-10 flex items-center justify-center rounded-full border transition-colors duration-300 ${currentIndex === coupons.length - 1
-              ? 'opacity-40 cursor-not-allowed'
-              : 'hover:bg-[#F5951D] hover:text-white'
+            ? 'opacity-40 cursor-not-allowed'
+            : 'hover:bg-[#F5951D] hover:text-white'
             } text-[#03373D] dark:text-white border-[#F5951D] bg-white dark:bg-zinc-800`}
         >
           <ChevronRight size={20} />
