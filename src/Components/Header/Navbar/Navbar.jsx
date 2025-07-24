@@ -41,7 +41,6 @@ const Navbar = () => {
   const links = (
     <>
       <NavLink to="/" className={navLinkClass}>Home</NavLink>
-      <NavLink to="/dashboard" className={navLinkClass}>Dashboard</NavLink>
       <NavLink to="/apartment" className={navLinkClass}>Apartments</NavLink>
     </>
   );
@@ -141,7 +140,21 @@ const Navbar = () => {
               <button onClick={() => setIsOpen(false)} className="text-2xl text-[#404042] dark:text-white">&times;</button>
             </div>
 
-            <div className="flex flex-col space-y-3 text-[#404042] dark:text-white text-sm">{links}</div>
+            <div className="flex flex-col space-y-3 text-[#404042] dark:text-white text-sm">
+              {links}
+              {user && (
+                <Link
+                  to="/dashboard"
+                  onClick={() => setIsOpen(false)}
+                  className="transition-all hover:text-[#F5951D] text-sm"
+                >
+                  Dashboard
+                </Link>
+              )}
+            </div>
+
+
+
             <DarkModeToggler />
 
             {user ? (
@@ -172,11 +185,7 @@ const Navbar = () => {
                     <MdLogin size={20} /> Log In
                   </button>
                 </Link>
-                {/* <Link to="/register" onClick={() => setIsOpen(false)}>
-                  <button className="w-full cursor-pointer bg-[#F5951D] text-white px-4 py-2 rounded border-2 border-[#F5951D] font-semibold hover:bg-[#404042] hover:border-[#404042] dark:hover:bg-white dark:hover:text-[#1e1e1f] transition-all">
-                    Register
-                  </button>
-                </Link> */}
+
               </div>
             )}
           </div>

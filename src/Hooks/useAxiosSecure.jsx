@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import useAuth from '../Hooks/useAuth';
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:3000'
+  baseURL: 'https://brickbase-server.vercel.app'
 })
 const useAxiosSecure = () => {
   const { user, logout } = useAuth();
