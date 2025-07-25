@@ -41,21 +41,46 @@ const Apartment = () => {
 
     if (!result.isConfirmed) return;
 
-    const agreementData = {
-      userName: user.displayName,
-      email: user.email,
-      floorNo: apt.floorNo,
-      blockName: apt.blockName,
-      apartmentNo: apt.apartmentNo,
-      rent: apt.rent,
-      status: 'pending',
-      requestDate: new Date().toISOString().split('T')[0]
-    };
-    console.log(agreementData);
-
     try {
+      // Fetch agreements and members
+      const [agreementsRes, usersRes] = await Promise.all([
+        axiosSecure.get("/agreements"),
+        axiosSecure.get("/users?role=member")
+      ]);
+
+      const agreements = agreementsRes.data;
+      const members = usersRes.data;
+
+      // Check if apartment already taken by member
+      const isTaken = agreements.some(ag =>
+        ag.status === "checked" &&
+        ag.blockName === apt.blockName &&
+        ag.apartmentNo === apt.apartmentNo &&
+        members.some(m => m.email === ag.email)
+      );
+
+      if (isTaken) {
+        return Swal.fire({
+          icon: "error",
+          title: "Apartment Already Taken",
+          text: "A confirmed member has already taken this apartment.",
+          confirmButtonColor: "#F5951D",
+        });
+      }
+
+      // Submit agreement request
+      const agreementData = {
+        userName: user.displayName,
+        email: user.email,
+        floorNo: apt.floorNo,
+        blockName: apt.blockName,
+        apartmentNo: apt.apartmentNo,
+        rent: apt.rent,
+        status: 'pending',
+        requestDate: new Date().toISOString().split('T')[0]
+      };
+
       const res = await axiosSecure.post('/agreements', agreementData);
-      console.log(res);
 
       if (res.data.insertedId) {
         Swal.fire({
@@ -66,11 +91,9 @@ const Apartment = () => {
         });
       }
     } catch (err) {
-      console.log(err);
-
       Swal.fire({
         icon: 'error',
-        title: 'Oops...',
+        title: 'Error',
         text: err?.response?.data?.message || 'Something went wrong!',
         confirmButtonColor: '#F5951D',
       });
@@ -88,7 +111,7 @@ const Apartment = () => {
     return null;
   }
 
-  // 🔍 Filter apartments by rent range
+  //Filter apartments by rent range
   const filteredApartments = data?.filter((apt) => {
     const rent = apt.rent;
     const min = minRent === '' ? 0 : parseFloat(minRent);
@@ -96,7 +119,7 @@ const Apartment = () => {
     return rent >= min && rent <= max;
   }) || [];
 
-  // 📄 Pagination logic
+  //Pagination logic
   const itemsPerPage = 6;
   const totalPages = Math.ceil(filteredApartments.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;

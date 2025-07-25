@@ -70,8 +70,6 @@ const Login = () => {
         }
 
         const userRes = await axiosInstance.post('/users', userGoogleInfo);
-        console.log(userRes.data);
-
         Swal.fire({
           title: 'Success!',
           text: 'You have logged in successfully.',

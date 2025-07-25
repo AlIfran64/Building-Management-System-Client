@@ -34,7 +34,6 @@ const Register = () => {
     signup(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
 
         // Update user profile in firebase
         const userProfile = {
@@ -54,7 +53,6 @@ const Register = () => {
             }
 
             const userRes = await axiosInstance.post('/users', userInfo);
-            console.log(userRes.data);
 
           })
           .catch((error) => {
@@ -87,7 +85,6 @@ const Register = () => {
   };
 
   const password = watch('password');
-  console.log(password);
 
   // Handle image upload
   const handleImageUpload = async (e) => {

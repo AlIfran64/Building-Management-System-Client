@@ -126,8 +126,6 @@ const PaymentForm = () => {
           transactionId: paymentResult.paymentIntent.id,
           paymentDate: new Date()
         };
-        console.log(paymentData);
-
 
         const res = await axiosSecure.post("/payments", paymentData);
         if (res.data.insertedId) {
@@ -137,8 +135,7 @@ const PaymentForm = () => {
         }
       }
     } catch (err) {
-      console.error(err);
-      Swal.fire("Error", "Payment failed. Try again.", "error");
+      Swal.fire("Error", "Payment failed. Try again.", err);
     }
   };
 
