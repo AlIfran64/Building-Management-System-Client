@@ -1,4 +1,4 @@
-# BrickBase - Building Management System
+# BrickBase - Building Management Syste
 
 Welcome to **BrickBase**, a comprehensive Building Management System (BMS) designed to simplify and automate the management of residential and commercial buildings.
 
