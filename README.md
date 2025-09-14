@@ -67,6 +67,13 @@ BrickBase streamlines building administration tasks such as user management, fac
 
 ---
 
+## Admin Credentials
+
+- Email: alifranrafi64@gmail.com  
+- Password: 1234Asdf
+
+---
+
 ## NPM Packages Used
 
 ### UI & Styling
