@@ -1,4 +1,4 @@
-# 🧱 BrickBase - Building Management System
+# BrickBase - Building Management System
 
 Welcome to **BrickBase**, a comprehensive Building Management System (BMS) designed to simplify and automate the management of residential and commercial buildings.
 
@@ -6,13 +6,13 @@ Welcome to **BrickBase**, a comprehensive Building Management System (BMS) desig
 - 🌐 [https://brickbase-4d222.web.app/](https://brickbase-4d222.web.app/)
 ---
 
-## 📌 Purpose
+## Purpose
 
 BrickBase streamlines building administration tasks such as user management, facility agreements, payment processing, tracking, and communication between management and tenants. It's built for apartment members, building owners, and users to improve transparency and operational efficiency.
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 -  **Role-Based Authentication** (Admin, Member, User)
 -  **Apartment and Building Unit Management**
@@ -31,7 +31,7 @@ BrickBase streamlines building administration tasks such as user management, fac
 
 ---
 
-## 🚀 Tech Stack
+## Tech Stack
 
 ### Frontend:
 - **React.js**
@@ -59,12 +59,17 @@ BrickBase streamlines building administration tasks such as user management, fac
 ### Payment Gateway:
 - **Stripe**
 
+---
+
+## 🔗 Additional Links
+
+- Server-side Repository: [https://github.com/AlIfran64/Building-Management-System-Server](https://github.com/AlIfran64/Building-Management-System-Server)
 
 ---
 
-## 📦 NPM Packages Used
+## NPM Packages Used
 
-### 🛠 UI & Styling
+### UI & Styling
 - [`tailwindcss`](https://www.npmjs.com/package/tailwindcss)
 - [`daisyui`](https://www.npmjs.com/package/daisyui)
 - [`lucide-react`](https://www.npmjs.com/package/lucide-react)
@@ -72,30 +77,30 @@ BrickBase streamlines building administration tasks such as user management, fac
 - [`swiper`](https://www.npmjs.com/package/swiper)
 - [`framer-motion`](https://www.npmjs.com/package/framer-motion)
 
-### 🔄 Routing & Forms
+### Routing & Forms
 - [`react-router`](https://www.npmjs.com/package/react-router)
 - [`react-hook-form`](https://www.npmjs.com/package/react-hook-form)
 
-### 📍 Maps
+### Maps
 - [`react-leaflet`](https://www.npmjs.com/package/react-leaflet)
 - [`leaflet-color-markers`](https://www.npmjs.com/package/leaflet-color-markers)
 
-### 🔥 Firebase & Auth
+### Firebase & Auth
 - [`firebase`](https://www.npmjs.com/package/firebase)
 - [`firebase-admin`](https://www.npmjs.com/package/firebase-admin)
 
-### 💳 Payment Integration
+### Payment Integration
 - [`@stripe/react-stripe-js`](https://www.npmjs.com/package/@stripe/react-stripe-js)
 - [`@stripe/stripe-js`](https://www.npmjs.com/package/@stripe/stripe-js)
 - [`stripe`](https://www.npmjs.com/package/stripe) (v18.0.0)
 
-### 📦 Data Handling
+### Data Handling
 - [`@tanstack/react-query`](https://www.npmjs.com/package/@tanstack/react-query)
 - [`axios`](https://www.npmjs.com/package/axios)
 - [`date-fns`](https://www.npmjs.com/package/date-fns)
 - [`recharts`](https://www.npmjs.com/package/recharts)
 
-### ⚠️ Alerts & Icons
+### ⚠Alerts & Icons
 - [`sweetalert2`](https://www.npmjs.com/package/sweetalert2)
 - [`react-icons`](https://www.npmjs.com/package/react-icons)
 
